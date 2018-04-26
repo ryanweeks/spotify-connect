@@ -15,7 +15,7 @@ import os.path
 
 
 # Creating gui
-app=gui("Weather", "600x500")
+app=gui("Spotify-Connect", "600x500")
 
 
 def runGui() :
@@ -27,65 +27,18 @@ def runGui() :
 	# Styling gui
 	#app.setIcon("Images/Weather-app.ico")
 	app.setResizable(canResize=False)
-	app.setBg("light blue")
+	app.setBg("dark blue")
 	app.setFont(12, "Verdana")
 
 	# .addLabel(name, text, row, col, colspan, rowspan) 
-	app.addLabel("Title", "Weather App", 0, 0, 4)
-
-	# Adding input box
-	app.addLabel("Location", "Location:", 1, 0)
-	app.addEntry("Location", 1, 1)
+	app.addLabel("Title", "Spotify-Connect", 0, 0, 4)
 
 	# Add a separator between the options and input box
 	# for improved readability
 	app.addHorizontalSeparator(2, 1, 1, colour="orange")
 
-	# Adding options
-	#app.startToggleFrame("Options", 3, 1, 1)
-	#app.setToggleFrameBg("Options", "light blue")
-	#app.addProperties("Options", optHandler.defaultOpts)
-	#app.stopToggleFrame()
-
-	# Add all buttons
-	app.addButton("Submit", press, 9, 0, 0)
-	app.addButton("Reset", press, 9, 1, 0)
-	app.addButton("Quit", press, 9, 2, 0)
-	app.setButtonFont(10, "Verdana")
-
-	# Update submit button
-	app.setButtonBg("Submit", "yellow")
-
-	# Update reset button
-	app.setButtonBg("Reset", "yellow")
-
-	# Update quit button
-	app.setButtonBg("Quit", "yellow")
-	
-	# Bind enter key to press
-	app.enableEnter(press)
-	
 	# Starts gui
 	app.go()
-   
-
-def showResult(data, resultGui):
-	'''
-	Pre: json data on weather conditions and initialized gui
-	Post: result gui is opened
-	Purpose: Display results gui and update content with
-	requested forecast data
-	'''
-	# Display content
-	zipcode = "Your Weather for: " + app.getEntry("Location")
-	resultGui.setLabel("zipcode", zipcode)
-	
-	curConditions = ""
-
-	resultGui.setMessage("Current Conditions", curConditions)
-	
-	resultGui.go()
-
 
 def press(btn):
 	'''
@@ -93,44 +46,5 @@ def press(btn):
 	Post: Action taken depending on button
 	Purpose: Handle button clicks to Submit, Reset, or Quit
 	'''
-	if btn=="Submit" or btn=='<Return>':
-		# Make results gui
-		results = makeResultsGui()
-		valid = True
-			
-		# Will only get forecast if the zipcode or location is valid
-		if valid:
-			showResult(jsonData, results)
-	elif btn=="Reset":
-		# Clear the entry of any input before entering a new location 
-		#app.setProperties("Options", optHandler.defaultOpts)
-		app.clearEntry("Location")
-		app.setFocus("Location")
-	elif btn=="Quit":
-		# Exit the program 
-		app.infoBox("Goodbye", "Thanks for stopping by ;)")
-		app.stop()
-
-
-def makeResultsGui():
-	'''
-	Pre: none
-	Post: Returns a results gui that has been initialized and content loaded
-	Purpose: Create the results gui, styled and with content
-	'''
-	# Create results gui
-	results=gui("Your Weather", "400x600")
-	
-	# Style gui
-	results.setResizable(canResize=False)
-	results.setBg("light blue")
-
-	# Display content
-	zipcode = "Your Weather for: " + app.getEntry("Location")
-	results.addLabel("zipcode", zipcode, 0, 0)
-	results.addMessage("Current Conditions", "")
-	
-	return results
-
-
+	continue
 runGui()
