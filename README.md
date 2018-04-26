@@ -1,3 +1,4 @@
 ## Spotify Connect
 
-### Ryan Weeks
+### Using appJar library for GUIs
+[Guide to using appJar](http://appjar.info/)
